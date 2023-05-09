@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { ButtonEl } from './Button.styled';
 
@@ -14,3 +15,9 @@ export class Button extends Component {
     );
   }
 }
+
+Button.propTypes = {
+  children: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+};

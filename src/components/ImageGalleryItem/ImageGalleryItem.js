@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Item, Image } from './ImageGalleryItem.styled';
+import PropTypes from 'prop-types';
+
 import { Modal } from '../Modal';
+
+import { Item, Image } from './ImageGalleryItem.styled';
 
 export class ImageGalleryItem extends Component {
   state = {
@@ -12,17 +15,23 @@ export class ImageGalleryItem extends Component {
   };
 
   render() {
-    const { webformatURL, largeImageURL, tags } = this.props.item;
+    const { img, largeImg, alt } = this.props;
 
     return (
       <>
         <Item className="gallery-item" onClick={this.toggleModal}>
-          <Image src={webformatURL} alt={tags} />
+          <Image src={img} alt={alt} />
         </Item>
         {this.state.showModal && (
-          <Modal url={largeImageURL} alt={tags} onClose={this.toggleModal} />
+          <Modal url={largeImg} alt={alt} onClose={this.toggleModal} />
         )}
       </>
     );
   }
 }
+
+ImageGalleryItem.propTypes = {
+  img: PropTypes.string.isRequired,
+  largeImg: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+};

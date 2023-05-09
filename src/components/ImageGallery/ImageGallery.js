@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ThreeDots } from 'react-loader-spinner';
 
 import { ImageGalleryItem } from '../ImageGalleryItem';
@@ -88,9 +89,18 @@ export class ImageGallery extends Component {
         <>
           <Gallery>
             {data.map(item => {
-              return <ImageGalleryItem key={item.id} item={item} />;
+              const { id, webformatURL, largeImageURL, tags } = item;
+              return (
+                <ImageGalleryItem
+                  key={id}
+                  img={webformatURL}
+                  largeImg={largeImageURL}
+                  alt={tags}
+                />
+              );
             })}
           </Gallery>
+
           {showSpinner ? (
             <ThreeDots
               color={'#3f51b5'}
@@ -108,3 +118,7 @@ export class ImageGallery extends Component {
     }
   }
 }
+
+ImageGallery.propTypes = {
+  query: PropTypes.string.isRequired,
+};
