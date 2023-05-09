@@ -64,7 +64,7 @@ export class ImageGallery extends Component {
     } catch (error) {
       console.log(error);
 
-      this.setState({ status: 'rejected' });
+      this.setState({ status: 'rejected', showSpinner: false });
     }
   };
 
