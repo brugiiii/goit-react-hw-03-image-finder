@@ -1,28 +1,28 @@
+import { Component } from 'react';
 import { createPortal } from 'react-dom';
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Overlay, ModalEl } from './Modal.styled';
 
-const modalRoot = document.querySelector('[id=modal-root]');
+const root = document.querySelector('[id=modal-root]');
 
 export class Modal extends Component {
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keydown', this.onEsc);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keydown', this.onEsc);
   }
 
-  handleBackdropClick = e => {
-    if (e.currentTarget === e.target) {
+  onEsc = e => {
+    if (e.code === 'Escape') {
       this.props.onClose();
     }
   };
 
-  handleKeyDown = e => {
-    if (e.code === 'Escape') {
+  onBackdrop = e => {
+    if (e.target === e.currentTarget) {
       this.props.onClose();
     }
   };
@@ -31,12 +31,12 @@ export class Modal extends Component {
     const { url, alt } = this.props;
 
     return createPortal(
-      <Overlay onClick={this.handleBackdropClick}>
+      <Overlay onClick={this.onBackdrop}>
         <ModalEl>
           <img src={url} alt={alt} />
         </ModalEl>
       </Overlay>,
-      modalRoot
+      root
     );
   }
 }

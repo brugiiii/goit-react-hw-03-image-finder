@@ -15,15 +15,15 @@ export class ImageGalleryItem extends Component {
   };
 
   render() {
-    const { img, largeImg, alt } = this.props;
+    const { image, largeImage, alt } = this.props;
 
     return (
       <>
-        <Item className="gallery-item" onClick={this.toggleModal}>
-          <Image src={img} alt={alt} />
+        <Item onClick={this.toggleModal}>
+          <Image src={image} alt={alt} />
         </Item>
         {this.state.showModal && (
-          <Modal url={largeImg} alt={alt} onClose={this.toggleModal} />
+          <Modal url={largeImage} alt={alt} onClose={this.toggleModal} />
         )}
       </>
     );
@@ -31,7 +31,7 @@ export class ImageGalleryItem extends Component {
 }
 
 ImageGalleryItem.propTypes = {
-  img: PropTypes.string.isRequired,
-  largeImg: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  largeImage: PropTypes.string.isRequired,
 };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { Header, Form, Button, Label, Input } from './Searchbar.styled';
 
 export class Searchbar extends Component {
@@ -7,10 +8,7 @@ export class Searchbar extends Component {
     query: '',
   };
 
-  handleChange = e => {
-    const query = e.currentTarget.value;
-    this.setState({ query });
-  };
+  handleChange = e => this.setState({ query: e.currentTarget.value });
 
   handleSubmit = e => {
     e.preventDefault();
@@ -29,7 +27,7 @@ export class Searchbar extends Component {
 
           <Input
             type="text"
-            autoComplete="off"
+            autocomplete="off"
             autoFocus
             placeholder="Search images and photos"
             onChange={this.handleChange}
